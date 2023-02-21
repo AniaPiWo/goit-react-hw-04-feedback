@@ -10,7 +10,6 @@ const App = () => {
   const [bad, setBad] = useState(0);
 
   const leaveFeedback = event => {
-    const name = event.target.name;
     switch (event.target.name) {
       case 'good':
         setGood(good + 1);
