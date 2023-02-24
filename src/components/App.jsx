@@ -8,6 +8,7 @@ const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
+  const total = good + neutral + bad;
 
   const leaveFeedback = event => {
     switch (event.target.name) {
@@ -25,12 +26,9 @@ const App = () => {
         break;
     }
   };
-  const countTotalFeedback = () => {
-    const total = good + neutral + bad;
-    return total;
-  };
+
   const countPositiveFeedbackPercentage = () => {
-    return Math.round((good / countTotalFeedback()) * 100);
+    return Math.round((good / total) * 100);
   };
 
   return (
@@ -48,12 +46,12 @@ const App = () => {
     >
       <Header message="Please leave your feedback!" />
       <FeedbackButtons variant={leaveFeedback} />
-      {countTotalFeedback() ? (
+      {total ? (
         <Statistics
           good={good}
           neutral={neutral}
           bad={bad}
-          total={countTotalFeedback()}
+          total={total}
           positivePercentage={countPositiveFeedbackPercentage()}
         />
       ) : (
